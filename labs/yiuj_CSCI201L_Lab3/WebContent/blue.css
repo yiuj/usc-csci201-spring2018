@@ -2,6 +2,7 @@ body {
     font: 100% Lucida Sans, Verdana;
     margin: 20px;
     line-height: 26px;
+    background-image: url("https://s3.freefoto.com/images/9912/01/9912_01_234_web.jpg");
 }
 
 .wrapper {
@@ -11,7 +12,7 @@ body {
 
 #top, #sidebar, #bottom, .menuitem {
     border-radius: 4px;
-    margin: 4px;
+    margin: 12px;
 }
 
 #top {
@@ -21,13 +22,15 @@ body {
 }
 
 #menubar {
-    width: 200px;
-    float: left
+    width: 400px;
+    float: left;
+    padding: 0px;
 }
 
 #main {
     padding: 10px;
     margin: 0 210px;
+    color: white;
 }
 
 #sidebar {
@@ -35,9 +38,8 @@ body {
     color: #80ffff;
     padding: 10px;
     width: 1000px;
-    bottom: 10;
-    top: 10;
-    right: 10;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #bottom {
@@ -58,8 +60,9 @@ body {
     background-color: #f1f1f1;
     border: 1px solid #d4d4d4;
     list-style-type: none;
-    padding: 2px;
+    padding: 0px;
     cursor: pointer;
+    background-color:#80ffff;
 }
 
 .menuitem:hover {
@@ -73,7 +76,7 @@ body {
 }
 
 a {
-    color: #000000;
+    color: #ffffff;
     text-decoration: underline;
 }
 
