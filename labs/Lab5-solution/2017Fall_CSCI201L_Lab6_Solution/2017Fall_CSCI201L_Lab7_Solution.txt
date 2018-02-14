@@ -1,0 +1,115 @@
+Documentaion for lab
+
+Concept:
+
+I would like to develop an application that allows students to enter their class schedule into the
+program and have it generate a table showing the times each day he has class. It would be great
+if this could be a web application.
+
+
+
+High-Level Requirements:
+
+A web application that allow students to enter their class and corresponding time slots.
+The program will parse user data and display the data in a table.
+In the result table, students can see class name and lecture time for each day.
+
+
+
+
+Technical Specifications:
+
+Requirements: 
+	web server
+
+Web interface(4 hours)
+	-A login page with username and password for user sign-up or validation.
+	-A personal home page where the time table can be displayed
+	-A drop down window where students can enter their class and time they wish to display
+
+Load time (4 hours)
+	-When user login to their home page, fetch class and time data from the database and display in a table. 
+	-When user input their time, put the user class and time data into the database
+	
+Database (2 hours)
+	-The database will contain 3 tables -A User table, A Class table, a Time table 
+	-The User table consists of userID, username, and password. It will be used to validate user login
+	as well as time slot user look up.
+	-The Class table consists of classID, classname.It will be used for class look up.
+	-The time table consists of timeID, userID, classID, timeslot. 
+
+
+Detailed Design:
+	-User interface and database Mock-ups:
+		User login page
+		
+		User home page
+		
+		drop-down window
+		
+	-Diagrams:
+		class diagrams:
+			 
+				
+		state diagrams: 
+	
+	-Functions:
+		JSP: 
+			login.jsp: 
+				-Submit a form to Login.servlet every time user press the submit button to login or sign up.
+				-Display an error message if student has not registered or the password is incorrect using HTTPRequest Attributes. 
+			
+			table.jsp:
+				-Request FetchTime.servlet for class and time slot data from FetchTime.servlet,
+				and use Javasciprt to dynamically display the in a HTML table. 
+				-Use Javascript to generate a drop-down window for students to enter class and time
+				when "enter time" is clicked.
+				-Send student class and time data to PutTime.servlet when student click submit
+				
+		Servlet:
+			Login.servlet:
+				-For sign-up users, put username and password in the database and approve login.
+				-For login users, use JDBCDriver to fetch corresponding password from database,
+				 and validate user identity. Approve login if password match the stored data. 
+				 Decline if the passwords do not match.
+				
+			FetchTime.servlet:
+				-Use JDBCDriver to connect to database and fetch the time and data for a student. Generate a 2D array
+				of class and time based on the data returned and send the data to table.jsp.
+				
+			PutTime.servlet:
+				-Use JDBCDriver to connect to database, put the class and time data for the corresponding student. 
+				-Refresh table.jsp to load the new time. 
+				
+
+Testing:
+	White-Box Test:
+	Test Case1: Test the login functionality with an exist username and correct password, the web app should direct user to the timetable home page.
+	
+	Test Case2: Test the login functionality with an exist username and incorrect password, the web application should stay at the login page 
+	and display an error message saying that "username and password do not match".
+	
+	Test Case3: Test the login functionality with an non-exist username, the web application should stay on the same page, and display 
+	a message: "username does not exist, please make sure you enter the right name or sign up"
+	
+	Test Case4: Test the sign up functionality by enter an existing username, the web application should stay on the login page, and 
+	ask the user to use a different name. 
+	
+	Test Case5: Test the sign up functionality by enter a non-existing username, the web application should redirect the user to time table homepage, 
+	and when login again, the newly entered username and password should be added to the database. 
+	
+	Test Case6: Test the enter time functionality by clicking on the enter time button, a drop-down window should show up and ask user to
+	put in class and time. 
+	
+	Test Case7: Test the enter time functionality by enter a non-exist class. The class table and the time table should be updated in the database.
+	The Time table page should be updated to display the newly entered class and time. 
+	
+	Test Case8: Test the enter time functionality by enter a exist class. Only the time table should be updated in the database.
+	The Time table page should be updated to display the newly entered class and time.
+	
+
+Deployment:
+
+
+
+
