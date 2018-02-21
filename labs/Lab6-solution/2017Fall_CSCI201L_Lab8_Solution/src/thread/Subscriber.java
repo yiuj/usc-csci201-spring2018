@@ -15,7 +15,7 @@ public class Subscriber extends Thread{
 				output += "tried to read but no message ...";
 				i-=1;
 			}else{
-				output += "read \""+m+"\"";
+				output += "reading \""+m+"\"";
 			}
 			Util.print(output);
 			try {

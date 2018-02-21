@@ -9,9 +9,9 @@ public class Messenger extends Thread{
 	}
 	public void run(){
 		for (int i = 0; i < 20; i++){
-			String message = "message #"+(i+1);
+			String message = "Message #"+(i+1);
 			mq.addMessage(message);
-			Util.print(Util.getDate()+" Messenger - insert \""+ message +"\"");
+			Util.print(Util.getDate()+" Messenger - inserting \""+ message +"\"");
 			try {
 				long v = ThreadLocalRandom.current().nextLong(0,1000);
 				//System.out.println("this is the random number"+ v);
