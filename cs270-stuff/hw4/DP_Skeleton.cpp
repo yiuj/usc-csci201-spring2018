@@ -31,7 +31,31 @@ int recursiveDash(int **c, int x, int y, int count, int posx, int posy)
 int boulderDash(int **c, int x, int y)
 {
 	// YOUR CODE HERE
-	return 0;
+	for(int posy = y-2; posy >= 0; posy--) {
+		for(int posx = 0; posx < x; posx++) {
+
+			int checkLeft = -1;
+			if(posx-1 >= 0) {
+				checkLeft = c[posx-1][posy+1];
+			}
+
+			int checkMiddle = c[posx][posy+1];
+
+			int checkRight = -1;
+			if(posx+1 < x) {
+				checkRight = c[posx+1][posy+1];
+			}
+
+			int maximum = max(checkLeft, max(checkMiddle, checkRight));
+			if(maximum == -1 || c[posx][posy] == -1) {
+				c[posx][posy] = -1;
+			}
+			else {
+				c[posx][posy] += maximum;
+			}
+		}
+	}
+	return c[0][0];
 }
 
 // DO NOT MODIFY THE FOLLOWING
@@ -45,7 +69,7 @@ int main()
 	cin >> tests;
 
 	// COMMENT OUT - start **************************
-	ifstream in("test.txt");
+	ifstream in("test2.txt");
 
 	// COMMENT Out - end ****************************
 
@@ -77,8 +101,8 @@ int main()
 			}
 			cout << endl;
 		}
-		cout << c[0][1] << endl;
-		cout << "ANSWER: " << recursiveDash(c, x , y, 0, 0, 0) << endl;
+		cout << "RECURSIVE ANSWER " << recursiveDash(c, x, y, 0, 0, 0) << endl;;
+		cout << "DYNAMIC ANSWER: " << boulderDash(c, x , y) << endl;
 		// COMMENT Out - end ****************************
 
 
@@ -90,4 +114,3 @@ int main()
 	out.close();
 	return 0;
 }
-
